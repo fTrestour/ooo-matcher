@@ -20,7 +20,7 @@ export type PreferConstraintInterface = {
 export type MissingConstraintInterface = {
   subject: Person;
   type: "will be missing during";
-  round: Round;
+  round: Round | undefined;
 };
 
 export type Constraint = PreferConstraintInterface | MissingConstraintInterface;

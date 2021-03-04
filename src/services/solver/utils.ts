@@ -61,5 +61,13 @@ export const preference = (person1: Person, person2: Person, round?: Round) =>
 export const removeFromRound = (
   person: Person,
   persons: readonly Person[],
-  round: Round
-) => Logic.not(Logic.or(...Pair.getAllFor(person, persons, round)));
+  round?: Round
+) =>
+  round
+    ? Logic.not(Logic.or(...Pair.getAllFor(person, persons, round)))
+    : Logic.not(
+        Logic.and(
+          Logic.or(...Pair.getAllFor(person, persons, 1)),
+          Logic.or(...Pair.getAllFor(person, persons, 2))
+        )
+      );

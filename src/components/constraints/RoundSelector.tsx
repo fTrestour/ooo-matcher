@@ -10,16 +10,11 @@ export const RoundSelector: React.FC<
     <Select
       name="round"
       options={
-        constraint.type !== "will be missing during"
-          ? ([
-              { label: "any round", value: undefined },
-              { label: "round 1", value: 1 as Round }, // TODO: type guard here
-              { label: "round 2", value: 2 as Round },
-            ] as const)
-          : ([
-              { label: "round 1", value: 1 as Round },
-              { label: "round 2", value: 2 as Round },
-            ] as const)
+        [
+          { label: "any round", value: undefined },
+          { label: "round 1", value: 1 as Round }, // TODO: type guard here
+          { label: "round 2", value: 2 as Round },
+        ] as const
       }
       value={constraint.round}
       onChange={(event) => {
