@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useConstraints } from "../services/Constraint";
 import { usePersons } from "../services/Person";
 import { useSolver } from "../services/solver";
+import { useFetchAndSetPairings } from "../services/useFetchAndSetPairings";
 import { ConstraintsSelector } from "./constraints";
 import { Pairs } from "./Pairs";
 import { PersonsCreator } from "./PersonsCreator";
@@ -10,6 +11,8 @@ import { PersonsCreator } from "./PersonsCreator";
 export const App: React.FC = () => {
   const [persons, filteredPersons, editPersons] = usePersons();
   const [constraints, editConstraints] = useConstraints();
+  useFetchAndSetPairings(editPersons, editConstraints);
+
   const { pairs, error } = useSolver(filteredPersons, constraints);
 
   return (
