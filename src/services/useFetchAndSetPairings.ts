@@ -37,7 +37,9 @@ const setPairings = (
   const newPersons = new Set<Person>();
   const newConstraints = new Array<PreferConstraintInterface>();
   for (const choice of weekPairings) {
-    const [person, firstWish, secondWish] = choice;
+    const [personFullName, firstWish, secondWish] = choice;
+
+    const person = getFirstName(personFullName);
 
     newPersons.add(person);
     newPersons.add(firstWish);
@@ -61,3 +63,5 @@ const setPairings = (
   editPersons.set(Array.from(newPersons));
   editConstraints.set(newConstraints);
 };
+
+const getFirstName = (name: string) => name.split(' ')[0]!;
