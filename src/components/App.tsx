@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useConstraints } from "../services/Constraint";
 import { usePersons } from "../services/Person";
 import { useSolver } from "../services/solver";
+import { useFetchAndSetPairings } from "../services/useFetchAndSetPairings";
 import { ConstraintsSelector } from "./constraints";
 import { Pairs } from "./Pairs";
 import { PersonsCreator } from "./PersonsCreator";
@@ -10,10 +11,18 @@ import { PersonsCreator } from "./PersonsCreator";
 export const App: React.FC = () => {
   const [persons, filteredPersons, editPersons] = usePersons();
   const [constraints, editConstraints] = useConstraints();
+  useFetchAndSetPairings(editPersons, editConstraints);
+
   const { pairs, error } = useSolver(filteredPersons, constraints);
 
   return (
     <Wrapper>
+      <WishesLink
+        href="https://docs.google.com/spreadsheets/d/1iGW8nN3NmiflsudnGlpBqHHnmfDyzoKrPOZBnlKDvz8/edit#gid=0&fvid=1986072419"
+        target="_blank"
+        >
+        Click here to see people's wishes comments
+      </WishesLink>
       <Persons>
         <PersonsCreator persons={persons} {...editPersons} />
       </Persons>
@@ -41,10 +50,17 @@ const Wrapper = styled.div`
   height: 100vh;
   display: grid;
   grid-template-areas:
-    "persons output"
-    "constraints output";
+    'link link'
+    'persons output'
+    'constraints output';
   grid-template-columns: 50% 50%;
-  grid-template-rows: auto;
+  grid-template-rows: 60px 1fr 1fr;
+`;
+
+const WishesLink = styled.a`
+  grid-area: link;
+  padding: 20px;
+  font-size: 20px;
 `;
 
 const Persons = styled.div`

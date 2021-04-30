@@ -12,6 +12,7 @@
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
     "@types/styled-components": "^5.1.7",
+    "date-fns": "^2.21.1",
     "lodash": "^4.17.20",
     "logic-solver": "^2.0.1",
     "react": "^17.0.1",
